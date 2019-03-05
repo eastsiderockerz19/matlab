@@ -72,3 +72,35 @@ if nargout == 0
     plot(t,y)
         y[]
 end 
+
+
+
+
+%%%%%
+
+%% sinusa signāls
+t_sin=0:0.01:1;
+A0 = 0; A = 2.3;  T = (1-0)/2.3; f = 1/T;
+delay = 0;
+y_sin=A0+A*sin(2*pi*f*(t_sin-delay));
+plot(t_sin,y_sin)
+%% trokšņa signāls
+t_noise = 1:0.01:3;
+y_noise = 3*rand(size(t_noise))-1.25;
+plot(t_noise,y_noise)
+%% nuļļu signāls
+t_zero = 3:0.01:5;
+y_zero = t_zero*0;
+plot(t_zero,y_zero)
+%% lineāri mainiga funkcija
+t_saw = 5:0.01:7;
+%k = (yA - yB)/(tA-tB);
+k = (0-4)/(5-7); delay = 5;
+y_saw = k*(t_saw-delay);
+plot(t_saw,y_saw)
+%% n
+%% lineara funkcija
+t_const = 7:0.01:8.5;
+y_const =-2.3+0*t_const;
+plot(t_const,y_const)
+grid on
