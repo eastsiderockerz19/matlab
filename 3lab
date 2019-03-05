@@ -1,36 +1,39 @@
-function y = untitled3_fun(t)
+function y = untitled3(t)
 if nargin == 0
-t = 0:0.01:8.5
-t_sintf = (t<=0)&(t<1); t_sin = t(tsintf);
-t_noisef = (t>=1)&(t<=3); t_noise = t(tnoisetf);
-t_zerof = (t>=3)&(t<5); t_zero = t(tzerotf);
-t_sawf = (t>=5)&(t<7); t_saw = t(tsawtf);
-%% sinusa signāls
+    t = 0:0.01:8.5;
+end
+t_sintf = (t>=0)&(t<1); t_sin = t(t_sintf);
+t_noisef = (t>=1)&(t<3); t_noise = t(t_noisef);
+t_zerof = (t>=3)&(t<5); t_zero = t(t_zerof);
+t_sawf = (t>=5)&(t<7); t_saw = t(t_sawf);
+t_constf = (t>=7)&(t<=8.5); t_const = t(t_constf);
+% sinusa signāls
 %t_sin=0:0.01:1;
 A0 = 0; A = 2.3;  T = (1-0)/2.3; f = 1/T;
 delay = 0;
 y_sin=A0+A*sin(2*pi*f*(t_sin-delay));
 %plot(t_sin,y_sin)
-%% trokšņa signāls
+% trokšņa signāls
 %t_noise = 1:0.01:3;
 y_noise = 3*rand(size(t_noise))-1.25;
 %plot(t_noise,y_noise)
-%% nuļļu signāls
+% nuļļu signāls
 %t_zero = 3:0.01:5;
 y_zero = t_zero*0;
 %plot(t_zero,y_zero)
-%% lineāri mainiga funkcija
+% lineāri mainiga funkcija
 %t_saw = 5:0.01:7;
 %k = (yA - yB)/(tA-tB);
 k = (0-4)/(5-7); delay = 5;
 y_saw = k*(t_saw-delay);
 %plot(t_saw,y_saw)
-%% lineara funkcija
+% lineara funkcija
 %t_const = 7:0.01:8.5;
 y_const =-2.3+0*t_const;
 %plot(t_const,y_const)
-% t = [t_sint,t_noise,t_zero,t_saw];
-y = [t_sint,t_noise,t_zero,t_saw];
+% t = [t_sint,t_noise,t_zero,t_saw,Y_const];
+y = [y_sin,y_noise,y_zero,y_saw,y_const];
+if nargout == 0
     plot(t,y)
-    y[]
+    y=[];
 end
