@@ -1,0 +1,81 @@
+a = 5;
+>> i0 = 1e-6;
+>> Ud = 0:0.01:2;
+>> Id = i0*(exp(a*Ud)-1);
+>> Udk = [2 1.85 1.48 1 0.4261 0];
+>> Idk = [21.2 10 1.7 0.3 0.00738 0]*1e-3;
+>> plot(Ud,Id,Udk,Idk,'o')
+>> %% spline
+>> %% sintakse
+>> % yy = spline(x,y,xx)
+>> 
+>> % x,y merijumu punktu x,y koordinates
+>> % xx - x ar sikako soli
+>> x = Udk;
+>> y = Idk;
+>> xx = 0:0.01:2; 
+>> yy = spline(x,y,xx);
+>> hold on,plot (xx,yy,':')
+>> 
+
+% uzzimesim katru splainu atseviski
+>> pp = spline(x,y)
+
+pp = 
+
+      form: 'pp'
+    breaks: [0 0.4261 1 1.4800 1.8500 2]
+     coefs: [5x4 double]
+    pieces: 5
+     order: 4
+       dim: 1
+
+>> t = lo
+??? Undefined function or variable 'lo'.
+ 
+>> t = l
+??? Undefined function or variable 'l'.
+ 
+>> pp.form
+
+ans =
+
+pp
+
+>> pp.coefs
+
+ans =
+
+    0.0008   -0.0006    0.0001         0
+    0.0008    0.0004    0.0000    0.0000
+    0.0037    0.0017    0.0012    0.0003
+    0.1049    0.0071    0.0055    0.0017
+    0.1049    0.1235    0.0538    0.0100
+
+>> x1 = 0:0.01:0.4261;
+>> % y1 = pp.coefs(1,1)*x.^3+
+
+>> y = polyval(pp.coefs(1:),x1-0);
+??? y = polyval(pp.coefs(1:),x1-0);
+                           |
+Error: Unbalanced or unexpected parenthesis or bracket.
+ 
+>> y = polyval(pp.coefs(1,:),x1-0);
+>> plot(x1,y1,'c')
+??? Undefined function or variable 'y1'.
+ 
+>> y1 = polyval(pp.coefs(1:),x1-0);
+??? y1 = polyval(pp.coefs(1:),x1-0);
+                            |
+Error: Unbalanced or unexpected parenthesis or bracket.
+ 
+>> y1 = polyval(pp.coefs(1,:),x1-0);
+>> plot(x1,y1,'c')
+>> % 2 splains
+>> x2 = 0.4261:0.01:1;
+>> y2 = polyval(pp.coefs(2,:).x2-0.4261);
+??? Improper index matrix reference.
+ 
+>> y2 = polyval(pp.coefs(2,:),x2-0.4261);
+>> plot(x2,y2,'r')
+>> 
